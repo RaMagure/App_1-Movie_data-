@@ -2,32 +2,51 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 
 export default function Subscription() {
-    const [active,setactive] = useState(false)
-     
+    const [active, setactive] = useState(false)
+    const activate=(temp)=>{
+        setactive(temp)
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.container_box}>
                 <View>
-                <Text style={styles.head_text_style}>Subscription</Text>
+                    <Text style={styles.head_text_style}>Subscription</Text>
                 </View>
                 <View>
                     <Text style={styles.plan_style}>Your Current Plan</Text>
                 </View>
-                {active && (<View style={styles.plan_status}>
-                    <Text style={styles.active}>!</Text>
-                    <Text style={styles.status}>No Active Plans</Text>
-                </View>)}
                 
-
-                <View>
-                    <TouchableOpacity onPress={()=>setactive(!active)}>
-                        <View style={styles.view_container}>
-                            <Text style={styles.view_style}>
-                                View Plans
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
+                {active ? (
+    <View>
+        <View style={styles.plan_status}>
+            <Text style={styles.active}>!</Text>
+            <Text style={styles.status}>No Active Plans</Text>
+        </View>
+        <View>
+            <TouchableOpacity onPress={() => activate(false)}>
+                <View style={styles.view_container}>
+                    <Text style={styles.view_style}>
+                        Buy New Plan
+                    </Text>
                 </View>
+            </TouchableOpacity>
+        </View>
+    </View>
+) : (
+    <View>
+        <TouchableOpacity onPress={() => activate(true)}>
+            <View style={styles.view_container}>
+                <Text style={styles.view_style}>
+                    View My Plans
+                </Text>
+            </View>
+        </TouchableOpacity>
+    </View>
+)}
+
+
+                
             </View>
 
 
@@ -78,42 +97,42 @@ const styles = StyleSheet.create({
     view_container: {
         display: "flex",
         height: 30,
-        width: 140,
+        width: 150,
         marginTop: 20,
         borderRadius: 20,
         borderWidth: 1,
-        marginLeft: 20,
+        marginLeft: 15,
         borderColor: "rgba(4,65,120,255)",
     },
-    plan_style:{
-        fontSize:10,
-        marginLeft:15,
-        fontWeight:"600",
-        marginTop:20,
+    plan_style: {
+        fontSize: 10,
+        marginLeft: 15,
+        fontWeight: "600",
+        marginTop: 20,
     },
-    plan_status:{
-        marginLeft:40,
-        marginTop:10,
-        borderColor:"red",
-        borderWidth:3,
-        borderRadius:50,
-        height:100,
-        width:100,
-        
+    plan_status: {
+        marginLeft: 40,
+        marginTop: 10,
+        borderColor: "red",
+        borderWidth: 3,
+        borderRadius: 50,
+        height: 100,
+        width: 100,
+
 
     },
-    active:{
-        marginTop:-7,
-        fontSize:50,
-        color:"red",
-        textAlign:"center"
-        
+    active: {
+        marginTop: -7,
+        fontSize: 50,
+        color: "red",
+        textAlign: "center"
+
 
     },
-    status:{
-        fontSize:10,
-        color:"red",
-        textAlign:"center"
+    status: {
+        fontSize: 10,
+        color: "red",
+        textAlign: "center"
 
     }
 

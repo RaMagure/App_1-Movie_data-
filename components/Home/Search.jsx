@@ -3,7 +3,7 @@ import { View, TextInput, TouchableOpacity, Image, FlatList, Text, StyleSheet } 
 import { Ionicons } from '@expo/vector-icons';
 
 export default function Search() {
-    const [isClicked, setIsClicked] = useState(false);
+    const [isClicked, setIsClicked] = useState(true);
     const [value, setValue] = useState('');
     const [searchItems, setSearchItems] = useState([]);
 
